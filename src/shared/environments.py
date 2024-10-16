@@ -1,10 +1,7 @@
 from enum import Enum
 import os
 
-from src.shared.domain.repositories.alerts_repository_interface import IAlertsRepository
-from src.shared.domain.repositories.battery_repository_interface import IBatteryRepository
-from src.shared.domain.repositories.measurements_repository_interface import IMeasurementsRepository
-from src.shared.domain.repositories.producers_consumers_repository_interface import IProducersConsumersRepository
+from src.shared.domain.repositories.notice_rag_repository_interface import INoticeRagRepository
 
 
 class STAGE(Enum):
@@ -36,50 +33,17 @@ class Environments:
             self._configure_local()
 
         self.stage = STAGE[os.environ.get("ENV")]
-        self.mongo_uri = os.environ.get("MONGO_URI")
-        self.mongo_db_name = os.environ.get("DB_NAME")
+        # self.mongo_uri = os.environ.get("MONGO_URI")
+        # self.mongo_db_name = os.environ.get("DB_NAME")
 
     @staticmethod
-    def get_alerts_repo() -> IAlertsRepository:
+    def get_notice_rag_repo() -> INoticeRagRepository:
         if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.repositories.alerts_repository_mock import AlertsRepositoryMock
-            return AlertsRepositoryMock
+            from src.shared.infra.repositories.notice_rag_repository_mock import NoticeRagRepositoryMock
+            return NoticeRagRepositoryMock
         elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.mongodb.alerts_repository_mongodb import AlertsRepositoryMongoDB
-            return AlertsRepositoryMongoDB
-        else:
-            raise Exception("No repository found for this stage")
-
-    @staticmethod
-    def get_battery_repo() -> IBatteryRepository:
-        if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.repositories.battery_repository_mock import BatteryRepositoryMock
-            return BatteryRepositoryMock
-        elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.mongodb.battery_repository_mongodb import BatteryRepositoryMongoDB
-            return BatteryRepositoryMongoDB
-        else:
-            raise Exception("No repository found for this stage")
-
-    @staticmethod
-    def get_measurements_repo() -> IMeasurementsRepository:
-        if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.repositories.measurements_repository_mock import MeasurementsRepositoryMock
-            return MeasurementsRepositoryMock
-        elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.mongodb.measurements_repository_mongodb import MeasurementsRepositoryMongoDB
-            return MeasurementsRepositoryMongoDB
-        else:
-            raise Exception("No repository found for this stage")
-
-    @staticmethod
-    def get_producers_consumers_repo() -> IProducersConsumersRepository:
-        if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.repositories.producers_consumers_repository_mock import ProducersConsumersRepositoryMock
-            return ProducersConsumersRepositoryMock
-        elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.mongodb.producers_consumers_repository_mongodb import ProducersConsumersRepositoryMongoDB
-            return ProducersConsumersRepositoryMongoDB
+            from src.shared.infra.repositories.faiss.notice_rag_repository_faiss import NoticeRagRepositoryFaiss
+            return NoticeRagRepositoryFaiss
         else:
             raise Exception("No repository found for this stage")
 

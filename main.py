@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from src.modules.get_all_alerts.app.get_all_alerts_presenter import get_all_alerts_presenter
+from src.modules.get_similar_notices.app.get_similar_notices_presenter import get_similar_notices_presenter
 from src.shared.helpers.external_interfaces.http_flask import FlaskHttpRequest, FlaskHttpResponse
 
 app = Flask(__name__)
@@ -17,12 +17,12 @@ def flask_route(request, presenter):
     return FlaskHttpResponse(body=res.body, status_code=res.status_code).to_flask_response()
 
 
-@app.route('/get-all-alerts', methods=['GET'])
-def get_all_alerts():
-    return flask_route(request, get_all_alerts_presenter)
+@app.route('/get-similar-notices', methods=['POST'])
+def get_similar_notices():
+    return flask_route(request, get_similar_notices_presenter)
 
 
-def solar_system_api(request):
+def rag_api(request):
     with app.request_context(request.environ):
         try:
             rv = app.preprocess_request()
