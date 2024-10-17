@@ -8,7 +8,8 @@ import faiss
 import pandas as pd
 from langchain.schema import Document
 from langchain_community.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
+# from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 model_name = 'all-MiniLM-L6-v2'
 embeddings_model = HuggingFaceEmbeddings(model_name=model_name)
