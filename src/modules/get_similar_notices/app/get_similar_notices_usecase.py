@@ -1,7 +1,7 @@
 
 
-import datetime
-from typing import List, Optional
+from collections import defaultdict
+from typing import List
 from src.shared.domain.entities.notice_chunk import NoticeChunk
 from src.shared.domain.repositories.notice_rag_repository_interface import INoticeRagRepository
 from src.shared.helpers.errors.usecase_errors import CreationError
@@ -17,4 +17,23 @@ class GetSimilarNoticesUsecase:
         if not chunks:
             raise CreationError('No similar notices found')
 
-        return chunks
+        edital_similarity = defaultdict(list)
+
+        for result in chunks:
+            edital_similarity[result.notice].append(result.distance)
+
+        edital_avg_similarity = {}
+        for edital, distances in edital_similarity.items():
+            avg_distance = sum(distances) / len(distances)
+            edital_avg_similarity[edital] = avg_distance
+
+        sorted_notice_similarity = sorted(
+            edital_avg_similarity.items(), key=lambda x: x[1])
+
+        sorted_chunks = []
+        for notice, _ in sorted_notice_similarity:
+            first_chunk = next(
+                chunk for chunk in reversed(chunks) if chunk.notice == notice)
+            sorted_chunks.append(first_chunk)
+
+        return sorted_chunks
