@@ -1,0 +1,40 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #535355;
+    border-radius: .8rem;
+    padding: .8rem;
+    width: 100%;
+    text-align: left;
+    gap: .3vh;
+}
+
+.title{
+    font-size: 1.1rem;
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;    
+    overflow: hidden;          
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.text{
+    color: #fff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0;
+}
+
+.dateContainer{
+    display: inline-flex;
+    align-items: center;
+    gap: .2rem;
+}
+
+.icon{
+    color: #fff;
+}

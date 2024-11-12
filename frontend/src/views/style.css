@@ -1,0 +1,78 @@
+.search {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+}
+
+.title-page {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.input-button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    flex: 1;
+    min-height: 4vh;
+    font-size: 1rem;
+    border-radius: 1rem;
+    border: none;
+    padding: 1vh 4vw 0 1vh;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font-family: sans-serif
+}
+
+.button {
+    background-color: rgba(31, 31, 38);
+    position: absolute;
+    right: .5vw;
+    bottom: 0;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    border: none;
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button:hover{
+    transform: scale(1.02);
+}
+
+.icon {
+    color: #fff;
+    width: 2rem;
+}
+
+.cards {
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    max-height: 60vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Para Internet Explorer e Edge */
+    scrollbar-width: none;     /* Para Firefox */
+}
+
+.cards::-webkit-scrollbar {
+    display: none;  /* Para Chrome, Safari e Opera */
+}
