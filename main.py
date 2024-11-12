@@ -2,8 +2,10 @@ import os
 from flask import Flask, request
 from src.modules.get_similar_notices.app.get_similar_notices_presenter import get_similar_notices_presenter
 from src.shared.helpers.external_interfaces.http_flask import FlaskHttpRequest, FlaskHttpResponse
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/', methods=['GET'])
