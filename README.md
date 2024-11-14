@@ -24,7 +24,7 @@ A API tem o objetivo de pegar o texto digitado pelo usuário (na parte de front-
 
     Diretório aonde foi criada a API com o framework FLASK e o framework da Google Functions Framework para aplicar serveless call functions.
 
-- [banco_de_dados](https://github.com/LucasRomanato0/IMT_CD_ECM514_2_SEM/tree/main/banco_de_dados):
+- [web scraping e criação do banco_de_dados](https://github.com/LucasRomanato0/IMT_CD_ECM514_2_SEM/tree/main/banco_de_dados):
 
     Diretório aonde foi realizado o web scraping, a extração dos dados dos PDFs, os embedings e a criação do banco de dados vetorial.
 
