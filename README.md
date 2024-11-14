@@ -16,6 +16,9 @@ Inicialmente foi feito um web scraping no site da FINEP buscando todos os editai
 Em seguida criamos um FAISS (Facebook AI Similarity Search), um banco de dados vetorial com os embedings feitos, para realizar uma busca de similaridade entre um texto e os documentos e colocamos em uma API.
 A API tem o objetivo de pegar o texto digitado pelo usuário (na parte de front-end) e retornar uma lista de editais similares a ele, sendo dos mais similares para os menos similares.
 
+## Demo
+- [Vídeo de demonstração](https://www.youtube.com/watch?v=SIY7zNcwpO4)
+
 ## Documentação
 - [backend](https://github.com/LucasRomanato0/IMT_CD_ECM514_2_SEM/tree/main/backend):
 
